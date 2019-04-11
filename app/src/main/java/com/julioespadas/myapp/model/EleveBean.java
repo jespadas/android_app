@@ -9,6 +9,10 @@ public class EleveBean {
         this.prenom = prenom;
     }
 
+    public EleveBean() {
+
+    }
+
     public String getNom() {
         return nom;
     }

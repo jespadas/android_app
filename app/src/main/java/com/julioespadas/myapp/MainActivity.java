@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     private static final int ITEM_ID_NOTIF = 29;
     private static final int ITEM_ID_RV = 30;
 
-    Calendar calendar = Calendar.getInstance();
+    Calendar calendar;
 
 
     @Override

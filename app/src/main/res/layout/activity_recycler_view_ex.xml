@@ -7,12 +7,19 @@
     tools:context=".RecyclerViewExActivity">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="0pt"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_weight="1"
         android:gravity="center"
         android:onClick="onBtClick"
         android:text="Ajouter" />
+
+    <Button
+        android:layout_width="0pt"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="onBtChargerClick"
+        android:text="Charger" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
