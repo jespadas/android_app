@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     private static final int ITEM_ID_DP = 26;
     private static final int ITEM_ID_AD = 27;
     private static final int ITEM_ID_SE = 28;
+    private static final int ITEM_ID_NOTIF = 29;
+    private static final int ITEM_ID_RV = 30;
+
     Calendar calendar = Calendar.getInstance();
 
 
@@ -53,12 +56,14 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("No money no tacos");
         alertDialogBuilder.setTitle("Alerta:");
-        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(MainActivity.this, "Click ok", Toast.LENGTH_SHORT).show();
-            }
-        });
+        alertDialogBuilder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MainActivity.this, "click ok",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
         alertDialogBuilder.setIcon(R.mipmap.ic_launcher);
         alertDialogBuilder.show();
     }
@@ -69,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         menu.add(0, ITEM_ID_DP, 0, "Date Picker").setIcon(R.mipmap.ic_datepicker).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         menu.add(0, ITEM_ID_AD, 0, "Alert Dialog").setIcon(R.mipmap.ic_alertdialog).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         menu.add(0, ITEM_ID_SE, 0, "Service Exemple").setIcon(R.mipmap.ic_serviceexemple).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menu.add(0, ITEM_ID_NOTIF, 0, "Notification Exemple").setIcon(R.mipmap.ic_notification).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menu.add(0, ITEM_ID_RV, 0, "RecyclerView Exemple").setIcon(R.mipmap.ic_recyclerview).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return super.onCreateOptionsMenu(menu);
 
     }
@@ -87,6 +94,10 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             } else {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
             }
+        } else if (item.getItemId() == ITEM_ID_NOTIF) {
+            startActivity(new Intent(this, NotificationActivity.class));
+        } else if (item.getItemId() == ITEM_ID_RV) {
+            startActivity(new Intent(this, RecyclerViewExActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
@@ -115,4 +126,5 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         calendar.set((Calendar.DAY_OF_MONTH), dayOfMonth);
         Toast.makeText(this, simpleDateFormat.format(calendar.getTime()), Toast.LENGTH_SHORT).show();
     }
+
 }

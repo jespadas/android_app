@@ -5,23 +5,18 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ServiceExActivity">
+    tools:context=".NotificationActivity">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onBtStartClick"
-        android:text="Start" />
+        android:onClick="onBtNowClick"
+        android:text="Now" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onBtStopClick"
-        android:text="Stop" />
+        android:onClick="onBt10sClick"
+        android:text="10s" />
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
 </LinearLayout>
