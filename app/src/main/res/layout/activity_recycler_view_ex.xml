@@ -6,20 +6,35 @@
     android:orientation="vertical"
     tools:context=".RecyclerViewExActivity">
 
-    <Button
-        android:layout_width="0pt"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:onClick="onBtClick"
-        android:text="Ajouter" />
+        android:orientation="horizontal">
 
-    <Button
-        android:layout_width="0pt"
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="onBtClick"
+            android:text="Ajouter" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onBtChargerClick"
+            android:text="Charger" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pb"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="onBtChargerClick"
-        android:text="Charger" />
+        android:visibility="gone"
+        tools:visibility="visible" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
@@ -28,3 +43,4 @@
         tools:listitem="@layout/row_eleve" />
 
 </LinearLayout>
+

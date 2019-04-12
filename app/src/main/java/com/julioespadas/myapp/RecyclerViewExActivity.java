@@ -1,5 +1,6 @@
 package com.julioespadas.myapp;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,10 +18,12 @@ import java.util.ArrayList;
 
 public class RecyclerViewExActivity extends AppCompatActivity implements EleveAdapter.OnEleveAdapterListener {
 
+
     MonAT monAt;
     //Composant Graphique
     private RecyclerView rv;
     private ProgressBar pb;
+    private ProgressDialog dialog;
     //Données
     private ArrayList<EleveBean> eleves;
     //Outils
@@ -43,8 +46,17 @@ public class RecyclerViewExActivity extends AppCompatActivity implements EleveAd
         //rv.setAdapter(eleveAdapter = new EleveAdapter(eleves = new ArrayList<>()));
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (dialog != null) {
+            dialog.dismiss();
+            dialog = null;
+        }
+    }
+
     public void onBtClick(View view) {
-        eleves.add(new EleveBean("Eleve_" + eleves.size(), "Eleve"));
+        eleves.add(0, new EleveBean("Eleve_" + eleves.size(), "Eleve"));
         eleveAdapter.notifyItemInserted(0);
     }
 
@@ -58,7 +70,7 @@ public class RecyclerViewExActivity extends AppCompatActivity implements EleveAd
     }
 
     @Override
-    public void setOnEleveAdapterListener(EleveBean eleveBean, int position) {
+    public void onEleveAdapterClickListener(EleveBean eleveBean, int position) {
         eleves.remove(position);
         eleves.add(0, eleveBean);
         eleveAdapter.notifyItemMoved(position, 0);
@@ -70,6 +82,10 @@ public class RecyclerViewExActivity extends AppCompatActivity implements EleveAd
         eleveAdapter.notifyItemRemoved(position);
     }
 
+    /*-----------
+    // ASYNCTASK
+    -----------*/
+
     public class MonAT extends AsyncTask {
         EleveBean resultat;
         Exception exception;
@@ -78,6 +94,7 @@ public class RecyclerViewExActivity extends AppCompatActivity implements EleveAd
         protected void onPreExecute() {
             super.onPreExecute();
             pb.setVisibility(View.VISIBLE);
+            dialog = ProgressDialog.show(RecyclerViewExActivity.this, "", "You have to wait...");
         }
 
         @Override
@@ -95,6 +112,10 @@ public class RecyclerViewExActivity extends AppCompatActivity implements EleveAd
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
             pb.setVisibility(View.GONE);
+            if (dialog != null) {
+                dialog.dismiss();
+                dialog = null;
+            }
             if (exception != null) {
                 Toast.makeText(RecyclerViewExActivity.this, "We have a problem : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
             } else {
