@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     private static final int ITEM_ID_SE = 28;
     private static final int ITEM_ID_NOTIF = 29;
     private static final int ITEM_ID_RV = 30;
+    private static final int ITEM_ID_WEB = 31;
+    private static final int ITEM_ID_CP = 32;
 
     Calendar calendar;
 
@@ -76,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         menu.add(0, ITEM_ID_SE, 0, "Service Exemple").setIcon(R.mipmap.ic_serviceexemple).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         menu.add(0, ITEM_ID_NOTIF, 0, "Notification Exemple").setIcon(R.mipmap.ic_notification).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         menu.add(0, ITEM_ID_RV, 0, "RecyclerView Exemple").setIcon(R.mipmap.ic_recyclerview).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menu.add(0, ITEM_ID_WEB, 0, "Web").setIcon(R.mipmap.ic_web).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        menu.add(0, ITEM_ID_CP, 1, "Search postal code").setIcon(R.mipmap.ic_codepostal).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         return super.onCreateOptionsMenu(menu);
 
     }
@@ -98,6 +102,10 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             startActivity(new Intent(this, NotificationActivity.class));
         } else if (item.getItemId() == ITEM_ID_RV) {
             startActivity(new Intent(this, RecyclerViewExActivity.class));
+        } else if (item.getItemId() == ITEM_ID_WEB) {
+            startActivity(new Intent(this, WebExActivity.class));
+        } else if (item.getItemId() == ITEM_ID_CP) {
+            startActivity(new Intent(this, SearchCodePostal.class));
         }
         return super.onOptionsItemSelected(item);
     }
